@@ -1,0 +1,46 @@
+Name 6809SBC;
+Partno ;
+Revision;
+Date 10/01/2021;
+Designer Jim Loos;
+Company ;
+Location ;
+Assembly ;
+Device G16V8A;
+
+
+/* Inputs:                              			*/
+Pin 2  = RW;        	/* from 6809 pin 32 		*/
+Pin 3  = E;         	/* from 6809 pin 34 		*/
+Pin 4  = Addr3;	    	/* from 6809 pin 23 		*/
+Pin 5  = Addr2;	    	/* from 6809 pin 22 		*/
+Pin 6  = Addr1;	    	/* from 6809 pin 21 		*/
+Pin 7  = Addr0;	    	/* from 6809 pin 20 		*/
+Pin 8  = IRQ;       	/* from 6850 pin 7  		*/
+
+FIELD ADDRESS = [Addr3..Addr0];
+
+/* Outputs:		                      			*/
+Pin 19 = !RAMCS;    	/* to 62265 pin 20  		*/    
+Pin 18 = !ROMCS;    	/* to 27256 pin 20  		*/    
+Pin 17 = !RD;       	/* to 62265 and 27256 pin 22	*/    
+Pin 16 = !WR;       	/* to 62265 pin 27  		*/    
+Pin 15 = !ACIA;     	/* to 6850 pin 9   		*/    
+Pin 14 = !VIA;      	/* to 6522 pin 23  		*/    
+Pin 13 = !RTS;      	/* to FTDI pin 2    		*/    
+
+/*  just a reminder for me (Jim)... 			*/
+/*  ! = NOT                        				*/
+/*  & = AND                         			*/
+/*  # = OR                          			*/
+/*  $ = XOR                         			*/
+
+/* Address decoding						*/
+RAMCS = ADDRESS:[0..7];         /* 0000-7FFF    	*/
+ROMCS = ADDRESS:[C..F];         /* C000-FFFF    	*/
+ACIA  = ADDRESS:[A];            /* A000-AFFF    	*/
+VIA   = ADDRESS:[B];            /* B000-BFFF    	*/
+
+RD =       E & RW;
+WR =       E & !RW;
+RTS =      IRQ;
