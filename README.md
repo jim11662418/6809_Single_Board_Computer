@@ -18,3 +18,6 @@ A simple 6809 Single Board Computer based on [Grant Searle's 6809 Computer](http
 
 <p align="center"><img src="/images/6809 SBC VIA.png"/>
 <p align="center">6809 SBC VIA</p><br>
+
+<p align="center"><img src="/images/6809 SBC.png"/>
+<p align="center">6809 SBC</p><br>
